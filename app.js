@@ -26,13 +26,18 @@ btn5.addEventListener("click", () => {
   img1.style.marginLeft = "-80%";
 });
 
-links.forEach((link) => {
-  link.addEventListener("click", () => {
-    link.classList.add("active");
-    Array.from(link.parentNode.children).forEach((sibling) => {
-      if (sibling !== link) {
-        sibling.classList.remove("active");
-      }
-    });
+function handleClick(event) {
+  const clickedLink = event.target;
+
+  links.forEach((link) => {
+    if (link === clickedLink) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
   });
+}
+
+links.forEach((link) => {
+  link.addEventListener("click", handleClick);
 });
